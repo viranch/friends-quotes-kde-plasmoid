@@ -5,10 +5,21 @@ Item {
     id: ticker
     property int minimumWidth: 470
     property int minimumHeight: 200
+    
+    XmlListModel {
+        id: model
+        source: "friends.xml"
+        query: "/friends-quotes/quote"
+        
+        XmlRole { name:"title"; query:"title/string()" }
+        XmlRole { name:"content"; query:"content/string()" }
+    }
+    
+    property int n: Math.floor(Math.random()*model.count)
 
     Components.Label {
         id: header
-        text: "<h3><i>The One Where Monica Gets A Roommate (A.K.A. The Pilot)</i> [1.01]</h3>"
+        text: model.get(n).title
         wrapMode: Text.WordWrap
         textFormat: Text.RichText
         width: parent.width
@@ -31,7 +42,7 @@ Item {
         
         Components.Label {
             id: content
-            text: "<style>dd { margin-top:5px; }</style>" + "<dl><dd><b>Monica</b>: There's nothing to tell! He's just some guy I work with!</dd><dd><b>Joey</b>: C'mon, you're going out with the guy! There's gotta be something wrong with him!</dd><dd><b>Chandler</b>: Alright Joey, be nice.</dd><dd><b>Chandler</b>: [<i>to Monica</i>] So does he have a hump? A hump and a hairpiece?</dd><dd><b>Phoebe</b>: Wait, does he eat chalk?</dd></dl>"
+            text: "<style>dd { margin-top:5px; }</style>" + model.get(n).content
             wrapMode: Text.WordWrap
             textFormat: Text.RichText
             width: ticker.width-30

@@ -1,0 +1,21 @@
+[Desktop Entry]
+Name=Friends Quotes
+Comment=Shows random quotes from the popular TV series Friends
+Icon=face-smile-big
+ 
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/main.qml
+X-Plasma-DefaultSize=470,200
+
+X-KDE-PluginInfo-Author=Viranch Mehta
+X-KDE-PluginInfo-Email=viranch.mehta@gmail.com
+X-KDE-PluginInfo-Website=http://viranchmehta.wordpress.com/
+X-KDE-PluginInfo-Category=Graphics
+X-KDE-PluginInfo-Name=org.kde.friends
+X-KDE-PluginInfo-Version=0.1
+
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=LGPL
+X-KDE-PluginInfo-EnabledByDefault=true
+X-KDE-ServiceTypes=Plasma/Applet,Plasma/PopupApplet
+Type=Service

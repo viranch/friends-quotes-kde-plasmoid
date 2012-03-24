@@ -13,6 +13,11 @@ Item {
         
         XmlRole { name: "title"; query: "title/string()" }
         XmlRole { name: "content"; query: "content/string()" }
+
+        onStatusChanged: {
+            if (status==XmlListModel.Ready && listView.model==0)
+                listView.model = randomize(count);
+        }
     }
     
     property int updateInterval: 5 // in minutes
@@ -48,14 +53,14 @@ Item {
             bottom: parent.bottom
             bottomMargin: 5
             left: parent.left
-            right: scrollBar.visible ? scrollBar.left : parent.right
+            right: parent.right
         }
-        model: randomize(xmlModel.count)
+        model: 0
         clip: true
         orientation: ListView.Horizontal
         snapMode: ListView.SnapToItem
         highlightMoveDuration: 500
-        contentHeight: currentItem.contentHeight
+        interactive: false
     
         delegate: ListItem {
             title: xmlModel.get(modelData).title
@@ -64,21 +69,7 @@ Item {
             height: listView.height
         }
         
-        onFlickEnded: {
-            currentIndex = contentX/contentWidth*count;
-        }
         Component.onCompleted: currentIndex = 0
-    }
-    
-    Components.ScrollBar {
-        id: scrollBar
-        flickableItem: listView
-        visible: false
-        anchors {
-            right: parent.right
-            top: parent.top
-            bottom: parent.bottom
-        }
     }
     
     ButtonBar {

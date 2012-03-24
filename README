@@ -24,11 +24,15 @@ The source directory can also be safely deleted.
 
 =SOURCE DATA====
 
+NOTE: This is only for information and reference and for
+developers. You do not need to read/do this for installing
+the plasmoid.
+
 The complete list of quotes is taken from the above mentioned
 link. There is a stripped and refined friends.html in root of
-the repo. The applet uses the XML form of the file to show them.
-TO generate the XML, simply run the script generate_xml.sh
-placed inside the scripts/ directory:
+the repo. The applet uses the XML form of the file to show the
+quotes. To generate the XML, simply run the script
+generate_xml.sh placed inside the scripts/ directory:
 
 $ cd scripts
 $ sh generate_xml.sh

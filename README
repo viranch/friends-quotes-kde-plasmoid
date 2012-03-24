@@ -9,18 +9,23 @@ quotes every 5 minutes.
 =INSTALL=========
 
 Make sure you are running the KDE SC version >= 4.8.
-You would also require the 'zip' package installed.
-(Test by simply running the 'zip' command on console)
 
-Make and install the plasmoid package from source:
+One line install: (do this if you don't want to clone
+the repository and directly install the plasmoid)
+Copy-paste the following line on your console and run:
 
-$ cd friends-quotes-kde-plasmoid/
-$ sh install.sh
+    wget -q https://github.com/viranch/friends-quotes-kde-plasmoid/tarball/master -O - | tar zx && cd viranch* && sh install.sh && cd ..
+
+Alternate install: (you can do this if you want to or
+have the repository cloned)
+
+    $ cd friends-quotes-kde-plasmoid/
+    $ sh install.sh
 
 The plasmoid is now installed and can now be added to the desktop/panel
 from the widgets list.
 
-The source directory can also be safely deleted.
+The repository directory can also be safely deleted.
 
 =SOURCE DATA====
 

@@ -55,6 +55,7 @@ Item {
         clip: true
         orientation: ListView.Horizontal
         snapMode: ListView.SnapToItem
+        highlightMoveDuration: 500
         contentHeight: currentItem.contentHeight
     
         delegate: ListItem {
@@ -73,11 +74,22 @@ Item {
     Components.ScrollBar {
         id: scrollBar
         flickableItem: listView
-        enabled: false
+        visible: false
         anchors {
             right: parent.right
             top: parent.top
             bottom: parent.bottom
         }
+    }
+    
+    ButtonBar {
+        id: buttonBar
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+            bottomMargin: 10
+        }
+        onLeftClicked: listView.currentIndex--;
+        onRightClicked: listView.currentIndex++;
     }
 }

@@ -45,7 +45,6 @@ Item {
         id: listView
         anchors {
             top: parent.top
-            topMargin: 5
             bottom: parent.bottom
             bottomMargin: 5
             left: parent.left

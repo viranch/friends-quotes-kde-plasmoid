@@ -1,2 +1,2 @@
 #!/bin/sh
-zip -r friends.plasmoid * && plasmapkg -u friends.plasmoid
+zip -r friends.plasmoid metadata.desktop contents README && plasmapkg -u friends.plasmoid

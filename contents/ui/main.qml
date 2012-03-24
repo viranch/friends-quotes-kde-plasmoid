@@ -7,55 +7,77 @@ Item {
     property int minimumHeight: 200
     
     XmlListModel {
-        id: model
+        id: xmlModel
         source: "friends.xml"
         query: "/friends-quotes/quote"
         
-        XmlRole { name:"title"; query:"title/string()" }
-        XmlRole { name:"content"; query:"content/string()" }
+        XmlRole { name: "title"; query: "title/string()" }
+        XmlRole { name: "content"; query: "content/string()" }
     }
     
-    property int n: Math.floor(Math.random()*model.count)
+    property int updateInterval: 5 // in minutes
+    
+     Timer {
+         interval: updateInterval*60000; running: true; repeat: true
+         onTriggered: listView.currentIndex++;
+     }
+    
+    function randomize(count) {
+        if (count<0) return [];
+        var a = new Array(count);
 
-    Components.Label {
-        id: header
-        text: model.get(n).title
-        wrapMode: Text.WordWrap
-        textFormat: Text.RichText
-        width: parent.width
+        for(i=0; i<count; i++)
+            a[i] = i;
+
+        for(i=a.length-1; i>0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+
+            // Swap the elements at positions i and j.
+            var temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+        }
+        
+        return a;
     }
 
-    Flickable {
-        id: flickableText
+    ListView {
+        id: listView
         anchors {
-            top: header.bottom
-            topMargin: 10
+            top: parent.top
+            topMargin: 5
             bottom: parent.bottom
             bottomMargin: 5
             left: parent.left
             right: scrollBar.visible ? scrollBar.left : parent.right
         }
-        boundsBehavior: scrollBar.visible ? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
-        contentWidth: width
-        contentHeight: content.height
+        model: randomize(xmlModel.count)
         clip: true
-        
-        Components.Label {
-            id: content
-            text: "<style>dd { margin-top:5px; }</style>" + model.get(n).content
-            wrapMode: Text.WordWrap
-            textFormat: Text.RichText
-            width: ticker.width-30
+        orientation: ListView.Horizontal
+        snapMode: ListView.SnapToItem
+        contentHeight: currentItem.contentHeight
+    
+        delegate: ListItem {
+            title: xmlModel.get(modelData).title
+            content: xmlModel.get(modelData).content
+            width: listView.width
+            height: listView.height
         }
+        
+        onFlickEnded: {
+            currentIndex = contentX/contentWidth*count;
+        }
+        Component.onCompleted: currentIndex = 0
     }
     
     Components.ScrollBar {
         id: scrollBar
-        flickableItem: flickableText
+        flickableItem: listView
+        enabled: false
         anchors {
             right: parent.right
-            top: flickableItem.top
-            bottom: flickableItem.bottom
+            top: parent.top
+            bottom: parent.bottom
         }
     }
 }

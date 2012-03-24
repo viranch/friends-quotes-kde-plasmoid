@@ -1,0 +1,49 @@
+This is a KDE plasmoid that scrobbles through all the quotes
+from the popular TV series Friends.
+
+It sits in your panel or on the desktop and switched through
+quotes every 5 minutes.
+
+=INSTALL=========
+
+Make sure you are running the KDE SC version >= 4.8.
+You would also require the 'zip' package installed.
+(Test by simply running the 'zip' command on console)
+
+Make and install the plasmoid package from source:
+
+$ cd friends-quotes-kde-plasmoid/
+$ sh install.sh
+
+The plasmoid is now installed and can now be added to the desktop/panel
+from the widgets list.
+
+The source directory can also be safely deleted.
+
+=AUTHOR=========
+
+Name: Viranch Mehta
+Email: viranch.mehta@gmail.com
+
+=LICENSE========
+
+The following license applies to all of the content residing in the
+directory that contains this README:
+
+Copyright (C) 2012 by Viranch Mehta <viranch.mehta@gmail.com>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU Library General Public License as
+published by the Free Software Foundation; either version 2, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Library General Public License for more details
+
+You should have received a copy of the GNU Library General Public
+License along with this program; if not, write to the
+Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+

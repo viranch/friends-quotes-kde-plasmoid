@@ -1,5 +1,7 @@
 This is a KDE plasmoid that scrobbles through all the quotes
 from the popular TV series Friends.
+The list of these quotes is taken from:
+http://en.wikiquote.org/wiki/Friends_(TV_series)
 
 It sits in your panel or on the desktop and switched through
 quotes every 5 minutes.

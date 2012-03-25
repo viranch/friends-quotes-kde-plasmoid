@@ -5,7 +5,7 @@ Item {
     id: applet
     property int minimumWidth: 470
     property int minimumHeight: 200
-    
+
     XmlListModel {
         id: xmlModel
         source: "friends.xml"
@@ -19,7 +19,7 @@ Item {
                 ticker.model = randomize(count);
         }
     }
-    
+
     property int tickInterval: 5 // in minutes
 
     Component.onCompleted: {
@@ -29,13 +29,13 @@ Item {
         tickInterval = plasmoid.readConfig("interval");
         tickTimer.restart();
     }
-    
+
     Timer {
         id: tickTimer
         interval: tickInterval*60000; running: true; repeat: true
         onTriggered: ticker.currentIndex++;
     }
-    
+
     function randomize(count) {
         if (count<0) return [];
         var a = new Array(count);
@@ -70,7 +70,7 @@ Item {
         snapMode: ListView.SnapToItem
         highlightMoveDuration: 500
         interactive: false
-    
+
         delegate: ListItem {
             title: xmlModel.get(modelData).title
             content: xmlModel.get(modelData).content
@@ -80,7 +80,7 @@ Item {
         
         Component.onCompleted: currentIndex = 0
     }
-    
+
     ButtonBar {
         id: buttonBar
         anchors {

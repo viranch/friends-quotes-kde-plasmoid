@@ -11,7 +11,7 @@ Item {
         textFormat: Text.RichText
         width: parent.width
     }
-    
+
     Flickable {
         id: flickableContent
         anchors {

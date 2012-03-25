@@ -5,16 +5,16 @@ MouseArea {
     width: buttons.width
     height: buttons.height
     hoverEnabled: true
-    
+
     signal leftClicked()
     signal rightClicked()
-    
+
     Components.Highlight {
         anchors.fill: parent
         opacity: parent.containsMouse
         Behavior on opacity { NumberAnimation { duration: 200 } }
     }
-    
+
     Row {
         id: buttons
         spacing: 2

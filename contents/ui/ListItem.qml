@@ -20,7 +20,7 @@ Item {
             right: scrollBar.visible ? scrollBar.left : parent.right
             bottom: parent.bottom
         }
-        interactive: scrollBar.visible
+        boundsBehavior: Flickable.StopAtBounds
         contentWidth: width
         contentHeight: contentText.paintedHeight
         clip: true

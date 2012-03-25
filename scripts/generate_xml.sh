@@ -1,4 +1,7 @@
-python parse.py ../friends.html source.xml
+#!/bin/sh
+
+path=$(echo $0 | sed "s/$(basename $0)//g")..
+python $path/scripts/parse.py $path/friends.html source.xml
 src=`pwd`
 mkdir /tmp/xml
 cd /tmp/xml
@@ -23,10 +26,9 @@ echo "QT += xml" >> xml.pro
 qmake
 make
 cd $src
-/tmp/xml/xml source.xml > friends.xml
+/tmp/xml/xml source.xml > $path/contents/ui/friends.xml
 rm source.xml
 rm -rf /tmp/xml
 echo
-echo ":: friends.xml generated: $src/friends.xml"
-echo ":: Copy the above file to contents/ui/ directory of the applet"
+echo ":: friends.xml generated and placed in contents/ui/friends.xml"
 echo

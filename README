@@ -39,11 +39,11 @@ the repo. The applet uses the XML form of the file to show the
 quotes. To generate the XML, simply run the script
 generate_xml.sh placed inside the scripts/ directory:
 
-$ cd scripts
-$ sh generate_xml.sh
+$ sh scripts/generate_xml.sh
 
-This will create a file friends.xml which is copied to the
-contents/ui/ directory of the applet.
+This will read the friends.html file from the repo and create
+XML file friends.xml and place it in the data directory of the
+applet from where the plasmoid would read the data.
 
 =AUTHOR=========
 

@@ -88,7 +88,13 @@ Item {
             bottom: parent.bottom
             bottomMargin: 10
         }
-        onLeftClicked: ticker.currentIndex--;
-        onRightClicked: ticker.currentIndex++;
+        onLeftClicked: moveTicker(-1);
+        onRightClicked: moveTicker(1);
+
+        function moveTicker(offset) {
+            if (offset>0) ticker.currentIndex++;
+            else if (offset<0) ticker.currentIndex--;
+            tickTimer.restart();
+        }
     }
 }

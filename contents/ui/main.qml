@@ -2,7 +2,7 @@ import QtQuick 1.1
 import org.kde.plasma.components 0.1 as Components
 
 Item {
-    id: ticker
+    id: applet
     property int minimumWidth: 470
     property int minimumHeight: 200
     
@@ -15,17 +15,26 @@ Item {
         XmlRole { name: "content"; query: "content/string()" }
 
         onStatusChanged: {
-            if (status==XmlListModel.Ready && listView.model==0)
-                listView.model = randomize(count);
+            if (status==XmlListModel.Ready && ticker.model==0)
+                ticker.model = randomize(count);
         }
     }
     
-    property int updateInterval: 5 // in minutes
+    property int tickInterval: 5 // in minutes
+
+    Component.onCompleted: {
+        plasmoid.addEventListener('ConfigChanged', configChanged);
+    }
+    function configChanged() {
+        tickInterval = plasmoid.readConfig("interval");
+        tickTimer.restart();
+    }
     
-     Timer {
-         interval: updateInterval*60000; running: true; repeat: true
-         onTriggered: listView.currentIndex++;
-     }
+    Timer {
+        id: tickTimer
+        interval: tickInterval*60000; running: true; repeat: true
+        onTriggered: ticker.currentIndex++;
+    }
     
     function randomize(count) {
         if (count<0) return [];
@@ -47,7 +56,7 @@ Item {
     }
 
     ListView {
-        id: listView
+        id: ticker
         anchors {
             top: parent.top
             bottom: parent.bottom
@@ -65,8 +74,8 @@ Item {
         delegate: ListItem {
             title: xmlModel.get(modelData).title
             content: xmlModel.get(modelData).content
-            width: listView.width
-            height: listView.height
+            width: ticker.width
+            height: ticker.height
         }
         
         Component.onCompleted: currentIndex = 0
@@ -79,7 +88,7 @@ Item {
             bottom: parent.bottom
             bottomMargin: 10
         }
-        onLeftClicked: listView.currentIndex--;
-        onRightClicked: listView.currentIndex++;
+        onLeftClicked: ticker.currentIndex--;
+        onRightClicked: ticker.currentIndex++;
     }
 }

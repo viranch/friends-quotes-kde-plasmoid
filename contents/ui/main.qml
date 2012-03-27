@@ -33,7 +33,7 @@ Item {
     Timer {
         id: tickTimer
         interval: tickInterval*60000; running: true; repeat: true
-        onTriggered: ticker.currentIndex++;
+        onTriggered: buttonBar.rightClicked();
     }
 
     function randomize(count) {
@@ -91,9 +91,9 @@ Item {
         onLeftClicked: moveTicker(-1);
         onRightClicked: moveTicker(1);
 
-        function moveTicker(offset) {
-            if (offset>0) ticker.currentIndex++;
-            else if (offset<0) ticker.currentIndex--;
+        function moveTicker(direction) {
+            if (direction>0) ticker.currentIndex = (ticker.currentIndex+1)%xmlModel.count;
+            else if (direction<0 && ticker.currentIndex>0) ticker.currentIndex--;
             tickTimer.restart();
         }
     }

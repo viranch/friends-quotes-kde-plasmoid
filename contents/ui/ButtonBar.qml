@@ -10,7 +10,7 @@ MouseArea {
     signal rightClicked()
 
     Components.Highlight {
-        anchors.fill: parent
+        anchors { fill: parent; margins: -7 }
         opacity: parent.containsMouse
         Behavior on opacity { NumberAnimation { duration: 200 } }
     }

@@ -7,8 +7,7 @@ Item {
 
     XmlListModel {
         id: xmlModel
-        source: "../../tvd.xml"
-        //source: "friends.xml"
+        source: "friends.xml"
         query: "/friends-quotes/quote"
         
         XmlRole { name: "title"; query: "title/string()" }
@@ -64,7 +63,7 @@ Item {
             left: parent.left
             right: parent.right
         }
-        model: xmlModel.count
+        model: 0
         clip: true
         orientation: ListView.Horizontal
         snapMode: ListView.SnapToItem
@@ -72,10 +71,8 @@ Item {
         interactive: false
 
         delegate: ListItem {
-            title: xmlModel.get(index).title
-            //title: xmlModel.get(modelData).title
-            //content: xmlModel.get(modelData).content
-            content: xmlModel.get(index).content
+            title: xmlModel.get(modelData).title
+            content: xmlModel.get(modelData).content
             width: ticker.width
             height: ticker.height
         }
